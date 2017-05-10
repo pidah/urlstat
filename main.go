@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tucnak/urlstat/stat"
+	"github.com/pidah/urlstat/stat"
 )
 
 var DB = make(map[string]string)

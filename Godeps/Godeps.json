@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/tucnak/urlstat",
+	"ImportPath": "github.com/pidah/urlstat",
 	"GoVersion": "go1.7.4",
 	"Packages": [
 		"./..."
