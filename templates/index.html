@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP Stat</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<br/>
+<div class="container">
+    <div class="navbar-form navbar-left" role="search">
+        <div class="input-group">
+            <input class="form-control" type="url" value="https://google.com">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary">Trace</button>
+            </span>
+        </div>
+    </div>
+    <br/>
+    <textarea style="height: 60vh" class="form-control col-12" id="traceback" readonly>Traceback!</textarea>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function trace() {
+    var url = encodeURIComponent($("input[type=url]").val());
+
+    $.get("/trace?url=" + url, function (resp) {
+        var text = "";
+
+        if (resp.status == "ok") {
+            text = resp.trace;
+        } else {
+            text = resp.message;
+        }
+
+        $("textarea").text(text);
+    });
+}
+
+$(document).ready(function() {
+    $("input[type=url]").keypress(function (e) {
+        if (e.which == 13) {
+            trace();
+            return false;
+        }
+    });
+
+    $("button").click(trace);
+});
+</script>
+</body>
+</html>
